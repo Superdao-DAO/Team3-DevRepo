@@ -1,4 +1,5 @@
 @call .\Shell /c
+@echo Installing Ethereum test development environment
 
 @call Import\Downloads\PortableGit-2.8.1-64-bit.7z.exe -y -gm2
 @move Import\Downloads\PortableGit Import\Git
