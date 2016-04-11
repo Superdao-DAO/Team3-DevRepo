@@ -71,9 +71,9 @@
 
 @echo Installing Truffle
 @if not exist Import\Node\testrpc.cmd (
-	@md C:\OpenSSL-Win64\lib
+	@if not exist C:\OpenSSL-Win64\lib md C:\OpenSSL-Win64\lib
 	@copy Import\OpenSSL\Lib\*.lib C:\OpenSSL-Win64\lib
 	@call npm i -g ethereumjs-testrpc
-	@rd /s /q C:\OpenSSL-Win64
+	@if not exist C:\OpenSSL-Win64\bin rd /s /q C:\OpenSSL-Win64
 )
 @if not exist Import\Node\truffle.cmd call npm i -g truffle
