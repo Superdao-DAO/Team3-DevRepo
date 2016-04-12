@@ -13,6 +13,26 @@ contract DougEnabled {
         DOUG = dougAddr;
         return true;
     }
+    
+    function isCalledFrom(bytes32 contractName) internal constant returns (bool) {
+        if (DOUG != 0x0) {
+            address from = Doug(DOUG).getContract(contractName);
+            
+            if (msg.sender == from) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    function isCalledFromDoug() internal constant returns (bool) {
+        if(DOUG != 0x0 && msg.sender == DOUG){
+            return true;
+        }
+        
+        return false;
+    }    
 
     // Makes it so that Doug is the only contract that may kill it.
     function remove(){
@@ -34,16 +54,22 @@ contract Doug {
 
     // Add a new contract to Doug. This will overwrite an existing contract.
     function addContract(bytes32 name, address addr) returns (bool result) {
-        // use grove library as DB
+        // permissions
+    
+        // use ContractsDB
     }
 
     // Remove a contract from Doug. We could also suicide if we want to.
     function removeContract(bytes32 name) returns (bool result) {
-       // use grove library as DB
+        // permissions
+
+        // use ContractsDB
     }
     
     function getContract(bytes32 name) returns (address contractAddr) {
-        // use grove library as DB
+        // permissions
+
+        // use ContractsDB
     }
 
     function remove(){
