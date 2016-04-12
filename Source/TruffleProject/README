@@ -1,0 +1,19 @@
+HELP LINKS
+
+System draft diagram: http://i.imgur.com/JD7ym6G.png
+Exercise description: https://superdao.slack.com/files/ola/F0X8S3M17/Collaborative_Excercise
+Legend: https://superdao.slack.com/files/ola/F0Y5PAVJ7/Diagram__Legend_Explanation
+
+Tutorial for similar system implementation: https://docs.erisindustries.com/tutorials/solidity/solidity-2/
+
+CURRENT STATE
+
+There are contracts files for part of the system (Base Contracts D in the diagram) with some skeleton code in the "contracts" forlder of the Truffle instance. No JS code to use them and no Front-End.
+
+TODO
+
+1. Use modifiers for conditional access. For example isCalledFrom, isCalledFromDoug.
+2. Updated solidity syntaxes where possible, ie possible usage of (new contract)() , self destruct, libraries etc..
+3. A better systems for making “Calls” to contracts registered with Doug through the action manger.
+4. Assume that you have grove library as storage
+5. Just model the use of a permissions system without implementation. 
