@@ -1,14 +1,14 @@
 // https://docs.erisindustries.com/tutorials/solidity/solidity-2/
-import "DougEnabled.sol";
+import "Doug.sol";
 
 contract ActionManagerEnabled is DougEnabled {
     // Makes it easier to check that action manager is the caller.
     function isActionManager() internal constant returns (bool) {
         if(DOUG != 0x0){
-            address am = ContractProvider(DOUG).contracts("actions");
+            /*address am = ContractProvider(DOUG).contracts("actions");
             if (msg.sender == am){
                 return true;
-            }
+            }*/
         }
         return false;
     }
@@ -19,11 +19,11 @@ contract ActionManager {
     // use grove library as DB    
 
     // If no action with the given name exists - cancel.
-    if (actn == 0x0){
+    /*if (actn == 0x0){
       return false;
-    }
+    }*/
     // No type conversion possible here, for now.
-    actn.call(data);
+    //actn.call(data);
     return true;
   }
 

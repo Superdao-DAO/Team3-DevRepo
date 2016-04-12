@@ -1,7 +1,7 @@
 // https://docs.erisindustries.com/tutorials/solidity/solidity-2/
 import "Owned.sol";
 
-contract DougEnabled {
+contract DougEnabled is Owned {
     address public DOUG;
 
     function setDougAddress(address dougAddr) returns (bool result){
@@ -13,19 +13,7 @@ contract DougEnabled {
         
         DOUG = dougAddr;
         return true;
-    }
-    
-    modifier restricted {
-        if (msg.sender == owner) _
-    }
-
-    // Makes it so that Doug is the only contract that may kill it.
-    function remove(){
-        if(msg.sender == DOUG){
-            suicide(DOUG);
-        }
-    }
-
+    }    
 }
 
 contract Doug {
