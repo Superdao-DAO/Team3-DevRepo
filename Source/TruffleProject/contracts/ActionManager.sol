@@ -1,4 +1,5 @@
 // https://docs.erisindustries.com/tutorials/solidity/solidity-2/
+import "DougEnabled.sol";
 
 contract ActionManagerEnabled is DougEnabled {
     // Makes it easier to check that action manager is the caller.

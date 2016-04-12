@@ -1,7 +1,8 @@
 // https://docs.erisindustries.com/tutorials/solidity/solidity-2/
+import "Owned.sol";
 
 contract DougEnabled {
-    address DOUG;
+    address public DOUG;
 
     function setDougAddress(address dougAddr) returns (bool result){
         // Once the doug address is set, don't allow it to be set again, except by the
@@ -12,6 +13,10 @@ contract DougEnabled {
         
         DOUG = dougAddr;
         return true;
+    }
+    
+    modifier restricted {
+        if (msg.sender == owner) _
     }
 
     // Makes it so that Doug is the only contract that may kill it.
@@ -25,7 +30,7 @@ contract DougEnabled {
 
 contract Doug {
 
-    address owner;
+    address public owner;
 
     // Constructor
     function Doug(){
@@ -46,7 +51,7 @@ contract Doug {
         // use grove library as DB
     }
 
-    function remove(){
+    function remove() {
         if(msg.sender == owner){
             suicide(owner);
         }
