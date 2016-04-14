@@ -16,24 +16,23 @@ contract DougEnabled is Owned {
         return true;
     }
     
-    function isCalledFrom(bytes32 contractName) internal constant returns (bool) {
+    modifier onlyCallsFromModule(bytes32 moduleName) {
         if (DOUG != 0x0) {
-            address from = Doug(DOUG).getContract(contractName);
+            address from = Doug(DOUG).getModule(moduleName);
             
             if (msg.sender == from) {
-                return true;
+                _
             }
         }
 
-        return false;
+        throw;
     }
     
-    function isCalledFromDoug() internal constant returns (bool) {
-        if(DOUG != 0x0 && msg.sender == DOUG){
-            return true;
+    modifier onlyCallsFromDoug() {
+        if(DOUG == 0x0 || msg.sender != DOUG){
+            throw;
         }
-        
-        return false;
+        _
     }    
 }
 
@@ -47,17 +46,16 @@ contract Doug {
         owner = msg.sender;
     }
 
-    // Add a new contract to Doug. This will overwrite an existing contract.
-    function addContract(bytes32 name, address addr) returns (bool result) {
+    function addModule(bytes32 name, address addr) returns (bool result) {
         // use grove library as DB
     }
 
-    // Remove a contract from Doug. We could also suicide if we want to.
-    function removeContract(bytes32 name) returns (bool result) {
+    // Remove a contract from Doug. We could also suicide if we want to (with an input flag)
+    function removeModule(bytes32 name) returns (bool result) {
        // use grove library as DB
     }
     
-    function getContract(bytes32 name) returns (address contractAddr) {
+    function getModule(bytes32 name) returns (address contractAddr) {
         // use grove library as DB
     }
 
