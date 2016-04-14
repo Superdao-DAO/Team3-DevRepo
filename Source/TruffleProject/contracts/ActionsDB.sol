@@ -7,17 +7,17 @@ contract ActionsDB is DougEnabled {
   mapping (bytes32 => address) public actions;
 
   function addAction(bytes32 name, address addr) returns (bool) {
-    /*if(!isCalledFrom("ActionManager")){
+    if(!isCalledFrom("ActionManager")){
       return false;
-    }*/
+    }
     actions[name] = addr;
     return true;
   }
 
   function removeAction(bytes32 name) returns (bool) {
-    /*if(!isCalledFrom("ActionManager")){
+    if(!isCalledFrom("ActionManager")){
       return false;
-    }*/
+    }
     if (actions[name] == 0x0){
       return false;
     }

@@ -1,6 +1,7 @@
 // https://docs.erisindustries.com/tutorials/solidity/solidity-2/
 import "Owned.sol";
 
+// Contracts which extend DougEnabled have access to the Modules Manager (Doug)
 contract DougEnabled is Owned {
     address public DOUG;
 
@@ -13,9 +14,30 @@ contract DougEnabled is Owned {
         
         DOUG = dougAddr;
         return true;
+    }
+    
+    function isCalledFrom(bytes32 contractName) internal constant returns (bool) {
+        if (DOUG != 0x0) {
+            address from = Doug(DOUG).getContract(contractName);
+            
+            if (msg.sender == from) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    function isCalledFromDoug() internal constant returns (bool) {
+        if(DOUG != 0x0 && msg.sender == DOUG){
+            return true;
+        }
+        
+        return false;
     }    
 }
 
+// Modules Manager contract
 contract Doug {
 
     address public owner;
