@@ -1,12 +1,18 @@
-// https://docs.erisindustries.com/tutorials/solidity/solidity-2/
 import "Doug.sol";
 
 contract ActionsDB is DougEnabled {
-// construct, self destroy, etc
+   function ActionsDB(address dougAddr) {
+        setDougAddress(dougAddr);
+        
+        Doug doug = getDoug();
+        if (!doug.addModule("core.actions.db", this)) {
+            throw;
+        }
+   }
 
     function _add(bytes32 name, address addr)
         public
-        onlyCallsFromModule("ActionManager")
+        onlyCallsFromModule("core.actions.manager")
         
         returns (bool)
     {
@@ -16,7 +22,7 @@ contract ActionsDB is DougEnabled {
 
     function _remove(bytes32 name)
         public
-        onlyCallsFromModule("ActionManager")
+        onlyCallsFromModule("core.actions.manager")
         
         returns (bool)
     {
@@ -24,8 +30,9 @@ contract ActionsDB is DougEnabled {
     }
   
     function _get(bytes32 name)
+        constant
         public
-        onlyCallsFromModule("ActionManager")
+        onlyCallsFromModule("core.actions.manager")
         
         returns (address actionAddr)
     {

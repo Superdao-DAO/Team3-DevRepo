@@ -16,6 +16,12 @@ contract DougEnabled is Owned {
         return true;
     }
     
+    function getDoug() internal returns(Doug doug) {
+        if (DOUG == 0x0) throw;
+        
+        doug = Doug(DOUG);
+    }
+    
     modifier onlyCallsFromModule(bytes32 moduleName) {
         if (DOUG != 0x0) {
             address from = Doug(DOUG).getModule(moduleName);
@@ -37,32 +43,61 @@ contract DougEnabled is Owned {
 }
 
 // Modules Manager contract
-contract Doug {
+contract Doug is DougEnabled {
+    address internal DougDBAddress;
 
-    address public owner;
+    function Doug(address _dougDBAddress){
+        if (!DougDB(_dougDBAddress).setDougAddress(this)) {
+            // DB is already being used by other Doug instance.
+            throw;
+        }
 
-    // Constructor
-    function Doug(){
-        owner = msg.sender;
+        setDougAddress(this);
+        DougDBAddress = _dougDBAddress;
+    
+        // Bellow registrations for core.doug and core.doug.db are not mandatory, but might be useful. Also setting them is a check if the DB is working correctly.
+        if (!addModule("core.doug", this)) {
+            throw;
+        }
+        if (!addModule("core.doug.db", DougDBAddress)) {
+            throw;
+        }
+    }
+    
+    function setDougDBAddress(address _dougDBAddress)
+        onlyOwner
+    {
+        DougDBAddress = _dougDBAddress;
     }
 
     function addModule(bytes32 name, address addr) returns (bool result) {
-        // use grove library as DB
+        // permissions
+        
+        DougDB db = DougDB(DougDBAddress);
+    
+        result = db._add(name, addr);
     }
 
     // Remove a contract from Doug. We could also suicide if we want to (with an input flag)
     function removeModule(bytes32 name) returns (bool result) {
-       // use grove library as DB
+        // permissions
+        
+        DougDB db = DougDB(DougDBAddress);
+    
+        result = db._remove(name);
     }
     
-    function getModule(bytes32 name) returns (address contractAddr) {
-        // use grove library as DB
-    }
-
-    function remove() {
-        if(msg.sender == owner){
-            suicide(owner);
-        }
+    function getModule(bytes32 name)
+        constant
+        public
+        
+        returns (address contractAddr)
+    {
+        // permissions
+        
+        DougDB db = DougDB(DougDBAddress);
+    
+        contractAddr = db._get(name);
     }
 
 }

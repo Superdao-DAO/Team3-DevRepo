@@ -1,7 +1,7 @@
 contract Owned {
     address public owner = msg.sender;
     
-    modifier owned() {
+    modifier onlyOwner() {
         if (msg.sender != owner) throw;
         _
     }
@@ -11,7 +11,7 @@ contract Owned {
         _
     }
     
-    function remove() public owned {
+    function remove() public onlyOwner {
         selfdestruct(owner);
     }
     
