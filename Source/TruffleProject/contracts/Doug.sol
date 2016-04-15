@@ -68,7 +68,7 @@ contract DougDB is DougEnabled {
 }
 
 // Modules Manager contract
-contract Doug is DougEnabled {
+contract Doug {
     address internal DougDBAddress;
 
     function Doug(address _dougDBAddress){
@@ -77,7 +77,6 @@ contract Doug is DougEnabled {
             throw;
         }
 
-        setDougAddress(this);
         DougDBAddress = _dougDBAddress;
     
         // Bellow registrations for core.doug and core.doug.db are not mandatory, but might be useful. Also setting them is a check if the DB is working correctly.
