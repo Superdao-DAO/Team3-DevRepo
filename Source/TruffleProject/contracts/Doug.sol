@@ -89,7 +89,7 @@ contract Doug {
     }
     
     function setDougDBAddress(address _dougDBAddress)
-        onlyOwner
+       // onlyOwner  //  Commented  Sol complier gave  error here 
     {
         DougDBAddress = _dougDBAddress;
     }
