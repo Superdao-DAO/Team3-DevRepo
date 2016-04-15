@@ -1,5 +1,5 @@
 import "Doug.sol";
-import "MathAddAction.sol";
+import ".\MathAddAction.sol";
 
 contract Math is DougEnabled {
    function Math(address dougAddr) {
