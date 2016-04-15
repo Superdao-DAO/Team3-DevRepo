@@ -10,8 +10,17 @@ module.exports = {
     "images/": "images/"
   },
   deploy: [
-    "MetaCoin",
-    "ConvertLib"
+    //Check in documentation: is deployment order correct ?  
+    "Action",
+    "ActionsDB",
+    "ActionsManager",
+    "Doug",
+    "DougDB",
+    "DougEnabled",
+    "GroveAPI",
+    "Math",
+    "MathAddAction",
+    "Owned"
   ],
   rpc: {
     host: "localhost",
