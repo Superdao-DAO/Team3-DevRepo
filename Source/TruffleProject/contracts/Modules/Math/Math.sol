@@ -1,5 +1,5 @@
 import "../../Doug.sol";
-import "MathAddAction.sol";
+import "./MathAddAction.sol";
 
 contract Math is DougEnabled {
    function Math(address dougAddr) {
@@ -19,6 +19,7 @@ contract Math is DougEnabled {
    }
    
    function add(bytes32 data) {
+        Doug doug = Doug(DOUG);
         ActionsManager am = ActionsManager(doug.getModule("core.actions.manager"));
         
         // can we return this?
