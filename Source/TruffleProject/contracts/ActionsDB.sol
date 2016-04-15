@@ -4,7 +4,7 @@ contract ActionsDB is DougEnabled {
    function ActionsDB(address dougAddr) {
         setDougAddress(dougAddr);
         
-        Doug doug = getDoug();
+        Doug doug = Doug(DOUG);
         if (!doug.addModule("core.actions.db", this)) {
             throw;
         }

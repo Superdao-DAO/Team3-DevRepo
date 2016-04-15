@@ -1,10 +1,11 @@
 import "Doug.sol";
+import "ActionsDB.sol";
 
-contract ActionManager is DougEnabled {
-   function ActionManager(address dougAddr) {
+contract ActionsManager is DougEnabled {
+   function ActionsManager(address dougAddr) {
         setDougAddress(dougAddr);
         
-        Doug doug = getDoug();
+        Doug doug = Doug(DOUG);
         if (!doug.addModule("core.actions.manager", this)) {
             throw;
         }
@@ -13,7 +14,7 @@ contract ActionManager is DougEnabled {
   function execute(bytes32 actionName, bytes data) returns (bool) {
     // permissions
 
-    Doug doug = getDoug();
+    Doug doug = Doug(DOUG);
     ActionsDB db = ActionsDB(doug.getModule("core.actions.db"));
     
     address actionAddr = db._get(actionName);
@@ -30,7 +31,7 @@ contract ActionManager is DougEnabled {
   {
     // permissions
 
-    Doug doug = getDoug();
+    Doug doug = Doug(DOUG);
     ActionsDB db = ActionsDB(doug.getModule("core.actions.db"));
     
     result = db._add(name, addr);
@@ -39,7 +40,7 @@ contract ActionManager is DougEnabled {
   function removeAction(bytes32 name) constant returns (bool result) {
     // permissions
 
-    Doug doug = getDoug();
+    Doug doug = Doug(DOUG);
     ActionsDB db = ActionsDB(doug.getModule("core.actions.db"));
     
     result = db._remove(name);

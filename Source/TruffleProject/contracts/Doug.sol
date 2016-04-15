@@ -1,4 +1,3 @@
-// https://docs.erisindustries.com/tutorials/solidity/solidity-2/
 import "Owned.sol";
 
 // Contracts which extend DougEnabled have access to the Modules Manager (Doug)
@@ -14,12 +13,6 @@ contract DougEnabled is Owned {
         
         DOUG = dougAddr;
         return true;
-    }
-    
-    function getDoug() internal returns(Doug doug) {
-        if (DOUG == 0x0) throw;
-        
-        doug = Doug(DOUG);
     }
     
     modifier onlyCallsFromModule(bytes32 moduleName) {
@@ -40,6 +33,38 @@ contract DougEnabled is Owned {
         }
         _
     }    
+}
+
+contract DougDB is DougEnabled {   
+    function _add(bytes32 name, address addr)
+        public
+        onlyCallsFromDoug
+        
+        returns (bool)
+    {
+        // store with Grove DB
+    }
+
+
+    function _remove(bytes32 name)
+        public
+        onlyCallsFromDoug
+        
+        returns (bool)
+    {
+        // remove from Grove DB
+    }
+    
+    function _get(bytes32 name)
+        constant
+        public
+        onlyCallsFromDoug
+        
+        returns (address contractAddr)
+    {
+        // get from Grove DB
+    }
+
 }
 
 // Modules Manager contract
