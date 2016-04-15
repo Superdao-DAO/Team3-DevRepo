@@ -1,0 +1,3 @@
+[submodule "Source/TruffleProject/contracts/lib/helpers"]
+	path = Source/TruffleProject/contracts/lib/helpers
+	url = git@github.com:Superdao-DAO/solidity-helpers-util.git
