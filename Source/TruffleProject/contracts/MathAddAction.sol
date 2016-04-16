@@ -1,5 +1,5 @@
 import "Action.sol";
-import "lib.helpers.strings";
+import "lib.helpers.strings.sol";
 
 contract MathAddAction is Action {
    function execute(bytes32 data)
