@@ -1,6 +1,9 @@
 import "Doug.sol";
 
-contract GarbageColletor is DougEnabled {
+
+
+contract GarbageCollector is DougEnabled {
+
    struct ActionCall {
         bytes32 actionName;
         address groveDBInstance;
