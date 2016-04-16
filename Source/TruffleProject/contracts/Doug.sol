@@ -42,7 +42,7 @@ contract DougDB is DougEnabled {
         
         returns (bool)
     {
-        // store with Grove DB
+        // @TODO use Grove DB
     }
 
 
@@ -52,7 +52,7 @@ contract DougDB is DougEnabled {
         
         returns (bool)
     {
-        // remove from Grove DB
+        // @TODO use Grove DB
     }
     
     function _get(bytes32 name)
@@ -62,13 +62,23 @@ contract DougDB is DougEnabled {
         
         returns (address contractAddr)
     {
-        // get from Grove DB
+        // @TODO use Grove DB
+    }
+    
+    function _getAll()
+        constant
+        public
+        onlyCallsFromDoug
+        
+        // @TODO what data structure to return?
+    {
+        // @TODO use Grove DB
     }
 
 }
 
 // Modules Manager contract
-contract Doug {
+contract Doug is Owned {
     address internal DougDBAddress;
 
     function Doug(address _dougDBAddress){
@@ -79,7 +89,7 @@ contract Doug {
 
         DougDBAddress = _dougDBAddress;
     
-        // Bellow registrations for core.doug and core.doug.db are not mandatory, but might be useful. Also setting them is a check if the DB is working correctly.
+        // Bellow registrations for core.doug and core.doug.db are not mandatory, but might be useful. Also setting them is a check, if the DB is working correctly.
         if (!addModule("core.doug", this)) {
             throw;
         }
@@ -89,7 +99,7 @@ contract Doug {
     }
     
     function setDougDBAddress(address _dougDBAddress)
-       // onlyOwner  //  Commented  Sol complier gave  error here 
+       onlyOwner
     {
         DougDBAddress = _dougDBAddress;
     }
@@ -122,6 +132,17 @@ contract Doug {
         DougDB db = DougDB(DougDBAddress);
     
         contractAddr = db._get(name);
+    }
+    
+    // @dev Also selfdestructs current Doug.
+    function switchDoug(address newDoug)
+        onlyOwner
+    {
+        DougDB db = DougDB(DougDBAddress);
+        
+        // @TODO Use db._getAll() and call setDougAddress(newDoug) for every contract.
+        
+        remove();
     }
 
 }
