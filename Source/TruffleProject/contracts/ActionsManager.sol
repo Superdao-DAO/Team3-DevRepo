@@ -11,16 +11,19 @@ contract ActionsManager is DougEnabled {
         }
    }
 
-  function execute(bytes32 actionName, bytes32 data) returns (bytes32 out) {
+  function execute(bytes32 actionName, address groveDBInstance, bytes32 dataKeyIndex, address caller) returns (bool) {
     // permissions
 
     Doug doug = Doug(DOUG);
     ActionsDB db = ActionsDB(doug.getModule("core.actions.db"));
     
     address actionAddr = db._get(actionName);
-	
-	out = actionAddr.call(string4(string32(sha3("execute(bytes32)"))), data);
-    }
+    
+    result = actionAddr.call(bytes4(bytes32(sha3("execute(address,bytes32)"))), groveDBInstance, dataKeyIndex);
+
+    GarbageColletor gc = GarbageColletor(doug.getModule("core.gc"));
+    gc.log(actionName, groveDBInstance, dataKeyIndex, now, caller);
+  }
 
   function addAction(bytes32 name, address addr)
     public

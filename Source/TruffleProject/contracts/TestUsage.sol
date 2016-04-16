@@ -6,12 +6,12 @@ contract TestUsage is DougEnabled {
     }
     
     function testAdd()
-        returns (bytes32 result)
+        returns (uint result)
     {
         Doug doug = Doug(DOUG);
         
         Math mathModule = Math(doug.getModule("modules.math"));
         
-        result = mathModule.add("5,20");
+        result = mathModule.add(5, 20);
     }
 }

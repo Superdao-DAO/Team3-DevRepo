@@ -30,5 +30,6 @@ Zlatinov create base contracts (D in the diagram), the system design and relatio
 Panos added his library to the project: https://github.com/Superdao-DAO/solidity-helpers-util
 Panos created the ActionsManager.execute implementation after researching a variaty of possible implementations.
 Archil tested and reviewed the contracts.
-Zlatinov outlined an alternative way to transfer input and output data between calee and action in alternative-execute branch: https://github.com/Superdao-DAO/Team3-DevRepo/tree/alternative-execute
+Zlatinov outlined an alternative way to transfer input and output data between caller and action in alternative-execute branch: https://github.com/Superdao-DAO/Team3-DevRepo/tree/alternative-execute
 Boris and Archil are researching on how to use Grove DB.
+Zlatinov implemented the alternative idea to transfer data between caller and action using references to structures kept in an outside contract, because addr.call() doesn't return data.
