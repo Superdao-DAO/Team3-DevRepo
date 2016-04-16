@@ -22,3 +22,13 @@ TODO
 4. Review Doug.sol: contracts' relations, so they can be separated into three files. 
 5. Just model the use of a permissions system without implementation.
 6. Updated solidity syntaxes where possible, ie possible usage of (new contract)() , self destruct, libraries etc..
+
+WORK SUMMARY
+
+Boris created the repo and Windows install scripts for basic setup of git, node, truffle, etc.
+Zlatinov create base contracts (D in the diagram), the system design and relations between the contracts.
+Panos added his library to the project: https://github.com/Superdao-DAO/solidity-helpers-util
+Panos created the ActionsManager.execute implementation after researching a variaty of possible implementations.
+Archil tested and reviewed the contracts.
+Zlatinov outlined an alternative way to transfer input and output data between calee and action in alternative-execute branch: https://github.com/Superdao-DAO/Team3-DevRepo/tree/alternative-execute
+Boris and Archil are researching on how to use Grove DB.
