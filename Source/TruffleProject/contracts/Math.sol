@@ -22,8 +22,8 @@ contract Math is DougEnabled {
         Doug doug = Doug(DOUG);
         ActionsManager am = ActionsManager(doug.getModule("core.actions.manager"));
         
-        // can we return this?
-       //  am.getAction("modules.math.add").execute(data);
+        // @TODO can we return this?
+        am.execute("modules.math.add", data);
    }
    
 }

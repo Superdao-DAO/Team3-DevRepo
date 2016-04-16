@@ -1,6 +1,5 @@
 contract Owned {
     address public owner = msg.sender;
-    
 
     modifier onlyOwner() {
         if (msg.sender != owner) throw;
