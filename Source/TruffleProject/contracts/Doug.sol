@@ -45,6 +45,7 @@ contract DougDB is DougEnabled {
         returns (bool)
     {
         // @TODO use Grove DB
+        grove.insert("DougDB", name , addr);
     }
 
 
@@ -55,6 +56,8 @@ contract DougDB is DougEnabled {
         returns (bool)
     {
         // @TODO use Grove DB
+        grove.remove("DougDB", name);   
+
     }
     
     function _get(bytes32 name)
