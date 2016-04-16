@@ -1,10 +1,13 @@
 import "Owned.sol";
+import "Grove.sol";
+
 
 // @TODO Review these three contracts' relations, so they can be separated into three files. 
 
 // Contracts which extend DougEnabled have access to the Modules Manager (Doug)
 contract DougEnabled is Owned {
     address public DOUG;
+    Grove grove;
 
     function setDougAddress(address dougAddr) returns (bool result){
         // Once the doug address is set, don't allow it to be set again, except by the
