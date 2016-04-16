@@ -18,12 +18,14 @@ contract Math is DougEnabled {
         }
    }
    
-   function add(bytes32 data) {
+   function add(bytes32 data)
+        returns (bytes32 out)
+   {
         Doug doug = Doug(DOUG);
         ActionsManager am = ActionsManager(doug.getModule("core.actions.manager"));
         
         // @TODO can we return this?
-        am.execute("modules.math.add", data);
+        out = am.execute("modules.math.add", data);
    }
    
 }
