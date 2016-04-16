@@ -11,7 +11,7 @@ contract ActionsManager is DougEnabled {
         }
    }
 
-  function execute(bytes32 actionName, bytes32 data) returns (bool) {
+  function execute(bytes32 actionName, bytes32 data) returns (bytes32 out) {
     // permissions
 
     Doug doug = Doug(DOUG);
@@ -20,8 +20,7 @@ contract ActionsManager is DougEnabled {
     address actionAddr = db._get(actionName);
 
     // @TODO get actions' contract instance and call its execute method
-
-    return true;
+    out = 10001;
   }
 
   function addAction(bytes32 name, address addr)
