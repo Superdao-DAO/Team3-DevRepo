@@ -18,9 +18,9 @@ contract ActionsManager is DougEnabled {
     ActionsDB db = ActionsDB(doug.getModule("core.actions.db"));
     
     address actionAddr = db._get(actionName);
-
-    // @TODO get actions' contract instance and call its execute method
-    out = 10001;
+	
+	out = actionAddr.call(string4(string32(sha3("execute(bytes32)"))), data);
+	
   }
 
   function addAction(bytes32 name, address addr)
