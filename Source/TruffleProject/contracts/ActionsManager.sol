@@ -20,8 +20,7 @@ contract ActionsManager is DougEnabled {
     address actionAddr = db._get(actionName);
 	
 	out = actionAddr.call(string4(string32(sha3("execute(bytes32)"))), data);
-	
-  }
+    }
 
   function addAction(bytes32 name, address addr)
     public
