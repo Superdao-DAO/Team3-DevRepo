@@ -81,35 +81,75 @@ contract DougDB is DougEnabled {
 
 // Modules Manager contract
 contract Doug is Owned {
-    address internal DougDBAddress;
+    address internal dougDBAddress;
+    address internal groveDBAddress;
+    address internal garbageCollector;
 
-    function Doug(address _dougDBAddress){
+    function Doug(address _dougDBAddress, address _groveDBAddress, address _garbageCollector){
         if (!DougDB(_dougDBAddress).setDougAddress(this)) {
             // DB is already being used by other Doug instance.
             throw;
         }
+        if (!GarbageColletor(_garbageCollector).setDougAddress(this)) {
+            // GC is already being used by other Doug instance.
+            throw;
+        }        
 
-        DougDBAddress = _dougDBAddress;
+        dougDBAddress = _dougDBAddress;
+        groveDBAddress = _groveDBAddress;
+        garbageCollector = _garbageCollector;
     
-        // Bellow registrations for core.doug and core.doug.db are not mandatory, but might be useful. Also setting them is a check, if the DB is working correctly.
         if (!addModule("core.doug", this)) {
             throw;
         }
-        if (!addModule("core.doug.db", DougDBAddress)) {
+        if (!addModule("core.doug.db", dougDBAddress)) {
             throw;
         }
+        if (!addModule("core.grove.db", groveDBAddress)) {
+            throw;
+        }
+        if (!addModule("core.gc", garbageCollector)) {
+            throw;
+        }        
     }
     
     function setDougDBAddress(address _dougDBAddress)
        onlyOwner
     {
-        DougDBAddress = _dougDBAddress;
+        dougDBAddress = _dougDBAddress;
+        
+        removeModule("core.doug.db");
+        if (!addModule("core.doug.db", dougDBAddress)) {
+            throw;
+        }
     }
+
+    function setGroveDBAddress(address _groveDBAddress)
+       onlyOwner
+    {
+        groveDBAddress = _groveDBAddress;
+        
+        removeModule("core.grove.db");
+        if (!addModule("core.grove.db", groveDBAddress)) {
+            throw;
+        }
+    }
+    
+    function setGCAddress(address _garbageCollector)
+       onlyOwner
+    {
+        garbageCollector = _garbageCollector;
+        
+        removeModule("core.gc");
+        if (!addModule("core.gc", garbageCollector)) {
+            throw;
+        }
+    }        
 
     function addModule(bytes32 name, address addr) returns (bool result) {
         // permissions
         
-        DougDB db = DougDB(DougDBAddress);
+        DougDB db = DougDB(dougDBAddress);
     
         result = db._add(name, addr);
     }
@@ -118,7 +158,7 @@ contract Doug is Owned {
     function removeModule(bytes32 name) returns (bool result) {
         // permissions
         
-        DougDB db = DougDB(DougDBAddress);
+        DougDB db = DougDB(dougDBAddress);
     
         result = db._remove(name);
     }
@@ -131,7 +171,7 @@ contract Doug is Owned {
     {
         // permissions
         
-        DougDB db = DougDB(DougDBAddress);
+        DougDB db = DougDB(dougDBAddress);
     
         contractAddr = db._get(name);
     }
@@ -140,7 +180,7 @@ contract Doug is Owned {
     function switchDoug(address newDoug)
         onlyOwner
     {
-        DougDB db = DougDB(DougDBAddress);
+        DougDB db = DougDB(dougDBAddress);
         
         // @TODO Use db._getAll() and call setDougAddress(newDoug) for every contract.
         
