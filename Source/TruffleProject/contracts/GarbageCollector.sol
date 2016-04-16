@@ -3,6 +3,7 @@ import "Doug.sol";
 contract GarbageColletor is DougEnabled {
    struct ActionCall {
         bytes32 actionName;
+        address groveDBInstance;
         bytes32 dataKeyIndex;
         uint timestamp;
         address caller;
@@ -13,7 +14,7 @@ contract GarbageColletor is DougEnabled {
    // dataKeyIndex to index in the callsLog array for easier access
    mapping (bytes32 => uint) callsLogMap;
    
-   function log(bytes32 actionName, bytes32 dataKeyIndex, uint timestamp, address caller) {
+   function log(bytes32 actionName, address groveDBInstance, bytes32 dataKeyIndex, uint timestamp, address caller) {
         // push to callsLog
         // save the new pushed item's index to callsLogMap
    }

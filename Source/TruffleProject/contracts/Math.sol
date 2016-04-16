@@ -32,7 +32,7 @@ contract Math is DougEnabled {
         // The index dataKeyIndex can be used in the action (MathAddAction in our case) to store the result and we'll have access to it here by adding a suffix "output" to the index: 38002fcf466f90d69a03e55c01d86b74aaee34ae3be4153e16f9b139f9e089e5output for example.
     
         ActionsManager am = ActionsManager(doug.getModule("core.actions.manager"));
-        bool success = am.execute("modules.math.add", groveDBInstance, dataKeyIndex);
+        bool success = am.execute("modules.math.add", groveDBInstance, dataKeyIndex, msg.sender);
         
         if (!success) {
             // The action failed.
