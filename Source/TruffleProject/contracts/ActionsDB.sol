@@ -1,6 +1,11 @@
 import "Doug.sol";
+import "Grove.sol";
+
 
 contract ActionsDB is DougEnabled {
+
+    Grove grove;
+
    function ActionsDB(address dougAddr) {
         setDougAddress(dougAddr);
         
@@ -16,7 +21,10 @@ contract ActionsDB is DougEnabled {
         
         returns (bool)
     {
-        // @TODO use Grove DB
+        // use Grove DB
+        // @TODO Check if key exists in db 
+        grove.insert("ActionsDB", name , addr);
+
     }
 
     function _remove(bytes32 name)
@@ -25,7 +33,8 @@ contract ActionsDB is DougEnabled {
         
         returns (bool)
     {
-        // @TODO use Grove DB    
+        // use Grove DB 
+        grove.remove("ActionsDB", name);   
     }
   
     function _get(bytes32 name)
@@ -36,6 +45,7 @@ contract ActionsDB is DougEnabled {
         returns (address actionAddr)
     {
         // @TODO use Grove DB
+        // @TODO get contract address by name from Grove Db  ...     
     }
 
 }
