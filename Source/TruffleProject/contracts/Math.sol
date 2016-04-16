@@ -24,8 +24,9 @@ contract Math is DougEnabled {
         Doug doug = Doug(DOUG);
         ActionsManager am = ActionsManager(doug.getModule("core.actions.manager"));
         
-        // @TODO can we return this?
-        out = am.execute("modules.math.add", data);
+        address dataKeyIndex = am.execute("modules.math.add", data);
+        
+        // Use dataKeyIndex with "output" suffix to read the results of the action from Grove DB.
    }
    
 }
