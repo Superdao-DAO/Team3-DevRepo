@@ -6,8 +6,7 @@ module.exports = {
     ],
     "app.css": [
       "stylesheets/app.css"
-    ],
-    "images/": "images/"
+    ]
   },
   deploy: [
     //Check in documentation: is deployment order correct ?  

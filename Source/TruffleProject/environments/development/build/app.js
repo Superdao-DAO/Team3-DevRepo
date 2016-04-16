@@ -5728,6 +5728,542 @@ var Pudding =
 /***/ }
 /******/ ]);
 
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [],
+    binary: "606060405260068060106000396000f3606060405200",
+    unlinked_binary: "606060405260068060106000396000f3606060405200",
+    address: "0xcf8a16e95964b8e5eccaf9acca5b1f4f9f0230c4",
+    generated_with: "2.0.6",
+    contract_name: "Action"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("Action error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Action error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Action error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Action error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.Action = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":false,"inputs":[{"name":"name","type":"bytes32"}],"name":"_remove","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"bytes32"},{"name":"addr","type":"address"}],"name":"_add","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"name","type":"bytes32"}],"name":"_get","outputs":[{"name":"actionAddr","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"dougAddr","type":"address"}],"name":"setDougAddress","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"remove","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"DOUG","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[{"name":"dougAddr","type":"address"}],"type":"constructor"}],
+    binary: "6060604081905260008054600160a060020a0319163317905560208061032b8339506080604052516000610072826001548390600160a060020a031681148015906100585750600154600160a060020a03838116911614155b156101065761011a565b505061020c8061011f6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f636f72652e616374696f6e732e6462000000000000000000000000000000000060845230600160a060020a0390811660a452919091169182916335324eee9160c4916020916044908290876161da5a03f115610002575050604051511515905061006257610002565b5060018054600160a060020a031916821781555b91905056606060405236156100615760e060020a60003504633276906b811461006a578063630bd2b814610124578063688a39581461013257806380e2653e1461013d5780638da5cb5b14610179578063a7f437791461018b578063db039d17146101a9575b6100005b610002565b6101bb6004355b6001546000907f636f72652e616374696f6e732e6d616e61676572000000000000000000000000908290600160a060020a03168114610065576001547f85acd6410000000000000000000000000000000000000000000000000000000060609081526064849052600160a060020a03909116906385acd6419060849060209060248187876161da5a03f11561000257505060405151915050600160a060020a03818116339091161415610065575b610002565b6101bb600435602435610071565b6101c5600435610071565b6101bb600435600154600090600160a060020a0316811480159061016f5750600154600160a060020a03838116911614155b156101d8576101f9565b6101c5600054600160a060020a031681565b61000060005433600160a060020a039081169116146101fe57610002565b6101c5600154600160a060020a031681565b6060908152602090f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    unlinked_binary: "6060604081905260008054600160a060020a0319163317905560208061032b8339506080604052516000610072826001548390600160a060020a031681148015906100585750600154600160a060020a03838116911614155b156101065761011a565b505061020c8061011f6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f636f72652e616374696f6e732e6462000000000000000000000000000000000060845230600160a060020a0390811660a452919091169182916335324eee9160c4916020916044908290876161da5a03f115610002575050604051511515905061006257610002565b5060018054600160a060020a031916821781555b91905056606060405236156100615760e060020a60003504633276906b811461006a578063630bd2b814610124578063688a39581461013257806380e2653e1461013d5780638da5cb5b14610179578063a7f437791461018b578063db039d17146101a9575b6100005b610002565b6101bb6004355b6001546000907f636f72652e616374696f6e732e6d616e61676572000000000000000000000000908290600160a060020a03168114610065576001547f85acd6410000000000000000000000000000000000000000000000000000000060609081526064849052600160a060020a03909116906385acd6419060849060209060248187876161da5a03f11561000257505060405151915050600160a060020a03818116339091161415610065575b610002565b6101bb600435602435610071565b6101c5600435610071565b6101bb600435600154600090600160a060020a0316811480159061016f5750600154600160a060020a03838116911614155b156101d8576101f9565b6101c5600054600160a060020a031681565b61000060005433600160a060020a039081169116146101fe57610002565b6101c5600154600160a060020a031681565b6060908152602090f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    address: "0x5f1ab75be0614b9e935b9c0139cda4d86bede6f2",
+    generated_with: "2.0.6",
+    contract_name: "ActionsDB"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsDB error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsDB error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsDB error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsDB error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.ActionsDB = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":true,"inputs":[{"name":"name","type":"bytes32"}],"name":"removeAction","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"dougAddr","type":"address"}],"name":"setDougAddress","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"remove","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"actionName","type":"bytes32"},{"name":"data","type":"bytes32"}],"name":"execute","outputs":[{"name":"","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"bytes32"},{"name":"addr","type":"address"}],"name":"addAction","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"DOUG","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[{"name":"dougAddr","type":"address"}],"type":"constructor"}],
+    binary: "6060604081905260008054600160a060020a031916331790556020806104ed8339506080604052516000610072826001548390600160a060020a031681148015906100585750600154600160a060020a03838116911614155b156101065761011a565b50506103ce8061011f6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f636f72652e616374696f6e732e6d616e6167657200000000000000000000000060845230600160a060020a0390811660a452919091169182916335324eee9160c4916020916044908290876161da5a03f115610002575050604051511515905061006257610002565b5060018054600160a060020a031916821781555b91905056606060405236156100615760e060020a60003504637a353ee3811461006957806380e2653e1461013d5780638da5cb5b14610179578063a7f437791461018b578063b94ccd6c146101a9578063bddbfc0f14610282578063db039d1714610363575b610000610002565b61037560043560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a031690829082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f3276906b000000000000000000000000000000000000000000000000000000008252600482018890529151919350600160a060020a0384169250633276906b916024828101926020929190829003018189876161da5a03f1156100025750506040515195945050505050565b610375600435600154600090600160a060020a0316811480159061016f5750600154600160a060020a03838116911614155b1561039a576103bb565b610387600054600160a060020a031681565b61000060005433600160a060020a039081169116146103c057610002565b61037560043560243560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a0316908290819083906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f688a3958000000000000000000000000000000000000000000000000000000008252600482018a90529151919450600160a060020a038516925063688a3958916024828101926020929190829003018187876161da5a03f1156100025750600198975050505050505050565b61037560043560243560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a031690829082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f630bd2b800000000000000000000000000000000000000000000000000000000825260048201899052600160a060020a0388811660248401529251909450918416925063630bd2b8916044828101926020929190829003018189876161da5a03f115610002575050604051519695505050505050565b610387600154600160a060020a031681565b60408051918252519081900360200190f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    unlinked_binary: "6060604081905260008054600160a060020a031916331790556020806104ed8339506080604052516000610072826001548390600160a060020a031681148015906100585750600154600160a060020a03838116911614155b156101065761011a565b50506103ce8061011f6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f636f72652e616374696f6e732e6d616e6167657200000000000000000000000060845230600160a060020a0390811660a452919091169182916335324eee9160c4916020916044908290876161da5a03f115610002575050604051511515905061006257610002565b5060018054600160a060020a031916821781555b91905056606060405236156100615760e060020a60003504637a353ee3811461006957806380e2653e1461013d5780638da5cb5b14610179578063a7f437791461018b578063b94ccd6c146101a9578063bddbfc0f14610282578063db039d1714610363575b610000610002565b61037560043560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a031690829082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f3276906b000000000000000000000000000000000000000000000000000000008252600482018890529151919350600160a060020a0384169250633276906b916024828101926020929190829003018189876161da5a03f1156100025750506040515195945050505050565b610375600435600154600090600160a060020a0316811480159061016f5750600154600160a060020a03838116911614155b1561039a576103bb565b610387600054600160a060020a031681565b61000060005433600160a060020a039081169116146103c057610002565b61037560043560243560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a0316908290819083906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f688a3958000000000000000000000000000000000000000000000000000000008252600482018a90529151919450600160a060020a038516925063688a3958916024828101926020929190829003018187876161da5a03f1156100025750600198975050505050505050565b61037560043560243560015460e060020a6385acd641026060908152608960020a6e31b7b9329730b1ba34b7b73997323102606452600091600160a060020a031690829082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517f630bd2b800000000000000000000000000000000000000000000000000000000825260048201899052600160a060020a0388811660248401529251909450918416925063630bd2b8916044828101926020929190829003018189876161da5a03f115610002575050604051519695505050505050565b610387600154600160a060020a031681565b60408051918252519081900360200190f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    address: "0x1567db09c0597c4ba5653a9d6d6ace72346adf9c",
+    generated_with: "2.0.6",
+    contract_name: "ActionsManager"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsManager error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsManager error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsManager error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("ActionsManager error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.ActionsManager = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":false,"inputs":[{"name":"newDoug","type":"address"}],"name":"switchDoug","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"bytes32"},{"name":"addr","type":"address"}],"name":"addModule","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"bytes32"}],"name":"removeModule","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":true,"inputs":[{"name":"name","type":"bytes32"}],"name":"getModule","outputs":[{"name":"contractAddr","type":"address"}],"type":"function"},{"constant":false,"inputs":[{"name":"_dougDBAddress","type":"address"}],"name":"setDougDBAddress","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"remove","outputs":[],"type":"function"},{"inputs":[{"name":"_dougDBAddress","type":"address"}],"type":"constructor"}],
+    binary: "6060604081905260008054600160a060020a031916331790556020806104538339506080604052517f80e2653e00000000000000000000000000000000000000000000000000000000608090815230600160a060020a039081166084528216906380e2653e9060a4906020906024816000876161da5a03f115610002575050604051511515905061008f57610002565b80600160006101000a815481600160a060020a03021916908302179055506101537f636f72652e646f75670000000000000000000000000000000000000000000000305b604080516001547f630bd2b800000000000000000000000000000000000000000000000000000000825260048201859052600160a060020a03848116602484015292516000939190911691829163630bd2b891604481810192602092909190829003018188876161da5a03f1156100025750506040515195945050505050565b151561015e57610002565b600154610195907f636f72652e646f75672e6462000000000000000000000000000000000000000090600160a060020a03166100d3565b15156101a057610002565b506102a4806101af6000396000f3606060405236156100615760e060020a60003504632dfce3f6811461006957806335324eee1461008b5780634114509b1461010257806385acd6411461016f5780638d524827146101dc5780638da5cb5b146101fd578063a7f437791461020f575b61022e610002565b61022e6004356000805433600160a060020a0390811691161461028157610002565b6102306004356024356001547f630bd2b80000000000000000000000000000000000000000000000000000000060609081526064849052600160a060020a038381166084526000921690819063630bd2b89060a49060209060448188876161da5a03f1156100025750506040515195945050505050565b6102306004356001547f3276906b0000000000000000000000000000000000000000000000000000000060609081526064839052600091600160a060020a0316908190633276906b9060849060209060248188876161da5a03f11561000257505060405151949350505050565b6102426004356001547f688a39580000000000000000000000000000000000000000000000000000000060609081526064839052600091600160a060020a031690819063688a39589060849060209060248188876161da5a03f11561000257505060405151949350505050565b61022e60043560005433600160a060020a0390811691161461025f57610002565b610242600054600160a060020a031681565b61022e5b60005433600160a060020a0390811691161461029657610002565b005b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f35b6001805473ffffffffffffffffffffffffffffffffffffffff19168217905550565b50600154600160a060020a0316610000610213565b600054600160a060020a0316ff",
+    unlinked_binary: "6060604081905260008054600160a060020a031916331790556020806104538339506080604052517f80e2653e00000000000000000000000000000000000000000000000000000000608090815230600160a060020a039081166084528216906380e2653e9060a4906020906024816000876161da5a03f115610002575050604051511515905061008f57610002565b80600160006101000a815481600160a060020a03021916908302179055506101537f636f72652e646f75670000000000000000000000000000000000000000000000305b604080516001547f630bd2b800000000000000000000000000000000000000000000000000000000825260048201859052600160a060020a03848116602484015292516000939190911691829163630bd2b891604481810192602092909190829003018188876161da5a03f1156100025750506040515195945050505050565b151561015e57610002565b600154610195907f636f72652e646f75672e6462000000000000000000000000000000000000000090600160a060020a03166100d3565b15156101a057610002565b506102a4806101af6000396000f3606060405236156100615760e060020a60003504632dfce3f6811461006957806335324eee1461008b5780634114509b1461010257806385acd6411461016f5780638d524827146101dc5780638da5cb5b146101fd578063a7f437791461020f575b61022e610002565b61022e6004356000805433600160a060020a0390811691161461028157610002565b6102306004356024356001547f630bd2b80000000000000000000000000000000000000000000000000000000060609081526064849052600160a060020a038381166084526000921690819063630bd2b89060a49060209060448188876161da5a03f1156100025750506040515195945050505050565b6102306004356001547f3276906b0000000000000000000000000000000000000000000000000000000060609081526064839052600091600160a060020a0316908190633276906b9060849060209060248188876161da5a03f11561000257505060405151949350505050565b6102426004356001547f688a39580000000000000000000000000000000000000000000000000000000060609081526064839052600091600160a060020a031690819063688a39589060849060209060248188876161da5a03f11561000257505060405151949350505050565b61022e60043560005433600160a060020a0390811691161461025f57610002565b610242600054600160a060020a031681565b61022e5b60005433600160a060020a0390811691161461029657610002565b005b60408051918252519081900360200190f35b60408051600160a060020a03929092168252519081900360200190f35b6001805473ffffffffffffffffffffffffffffffffffffffff19168217905550565b50600154600160a060020a0316610000610213565b600054600160a060020a0316ff",
+    address: "0xd816fdd50402366e5ac186d79b375b752c1fdc25",
+    generated_with: "2.0.6",
+    contract_name: "Doug"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("Doug error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Doug error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Doug error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Doug error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.Doug = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":false,"inputs":[{"name":"index","type":"GroveAPI.Index storage"},{"name":"operator","type":"bytes2"},{"name":"value","type":"int256"}],"name":"query","outputs":[{"name":"","type":"bytes32"}],"type":"function"},{"constant":false,"inputs":[{"name":"index","type":"GroveAPI.Index storage"},{"name":"id","type":"bytes32"},{"name":"value","type":"int256"}],"name":"insert","outputs":[],"type":"function"}],
+    binary: "",
+    unlinked_binary: "",
+    address: "0x954cb79c9004b8d766081b247daa122f2517ebf9",
+    generated_with: "2.0.6",
+    contract_name: "GroveAPI"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("GroveAPI error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("GroveAPI error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("GroveAPI error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("GroveAPI error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.GroveAPI = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":false,"inputs":[{"name":"data","type":"bytes32"}],"name":"add","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"dougAddr","type":"address"}],"name":"setDougAddress","outputs":[{"name":"result","type":"bool"}],"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"remove","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"DOUG","outputs":[{"name":"","type":"address"}],"type":"function"},{"inputs":[{"name":"dougAddr","type":"address"}],"type":"constructor"}],
+    binary: "6060604081905260008054600160a060020a031916331790556020806104c6833950608060405251600060006000610078846001548390600160a060020a0316811480159061005c5750600154600160a060020a03838116911614155b156102465761025a565b505050506102398061028d6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f6d6f64756c65732e6d617468000000000000000000000000000000000000000060845230600160a060020a0390811660a45291909116935083906335324eee9060c49060209060448187876161da5a03f115610002575050604051511515905061010c57610002565b604051602e8061025f833901809050604051809103906000f0915082600160a060020a03166385acd641604051817c010000000000000000000000000000000000000000000000000000000002815260040180807f636f72652e616374696f6e732e6d616e6167657200000000000000000000000081526020015060200190506020604051808303816000876161da5a03f1156100025750506040805180517fbddbfc0f0000000000000000000000000000000000000000000000000000000082527f6d6f64756c65732e6d6174682e616464000000000000000000000000000000006004830152600160a060020a03868116602484015292519094928516935063bddbfc0f926044838101936020939290839003909101908290876161da5a03f115610002575050604051511515905061006657610002565b5060018054600160a060020a031916821781555b919050566060604052601e8060106000396000f3606060405260e060020a6000350463e751f2718114601a575b005b6018566060604052361561004b5760e060020a6000350463446bffba811461005357806380e2653e146101685780638da5cb5b146101a4578063a7f43779146101b6578063db039d17146101d4575b6101e6610002565b6101e66004356001547f85acd6410000000000000000000000000000000000000000000000000000000060609081527f636f72652e616374696f6e732e6d616e61676572000000000000000000000000606452600160a060020a039091169060009082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517fb94ccd6c0000000000000000000000000000000000000000000000000000000082527f6d6f64756c65732e6d6174682e6164640000000000000000000000000000000060048301526024820187905291519193600160a060020a038516935063b94ccd6c9260448084019360209390839003909101908290876161da5a03f11561000257505050505050565b6101e8600435600154600090600160a060020a0316811480159061019a5750600154600160a060020a03838116911614155b1561020557610226565b6101f2600054600160a060020a031681565b6101e660005433600160a060020a0390811691161461022b57610002565b6101f2600154600160a060020a031681565b005b6060908152602090f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    unlinked_binary: "6060604081905260008054600160a060020a031916331790556020806104c6833950608060405251600060006000610078846001548390600160a060020a0316811480159061005c5750600154600160a060020a03838116911614155b156102465761025a565b505050506102398061028d6000396000f35b506001547f35324eee0000000000000000000000000000000000000000000000000000000060809081527f6d6f64756c65732e6d617468000000000000000000000000000000000000000060845230600160a060020a0390811660a45291909116935083906335324eee9060c49060209060448187876161da5a03f115610002575050604051511515905061010c57610002565b604051602e8061025f833901809050604051809103906000f0915082600160a060020a03166385acd641604051817c010000000000000000000000000000000000000000000000000000000002815260040180807f636f72652e616374696f6e732e6d616e6167657200000000000000000000000081526020015060200190506020604051808303816000876161da5a03f1156100025750506040805180517fbddbfc0f0000000000000000000000000000000000000000000000000000000082527f6d6f64756c65732e6d6174682e616464000000000000000000000000000000006004830152600160a060020a03868116602484015292519094928516935063bddbfc0f926044838101936020939290839003909101908290876161da5a03f115610002575050604051511515905061006657610002565b5060018054600160a060020a031916821781555b919050566060604052601e8060106000396000f3606060405260e060020a6000350463e751f2718114601a575b005b6018566060604052361561004b5760e060020a6000350463446bffba811461005357806380e2653e146101685780638da5cb5b146101a4578063a7f43779146101b6578063db039d17146101d4575b6101e6610002565b6101e66004356001547f85acd6410000000000000000000000000000000000000000000000000000000060609081527f636f72652e616374696f6e732e6d616e61676572000000000000000000000000606452600160a060020a039091169060009082906385acd6419060849060209060248187876161da5a03f1156100025750506040805180517fb94ccd6c0000000000000000000000000000000000000000000000000000000082527f6d6f64756c65732e6d6174682e6164640000000000000000000000000000000060048301526024820187905291519193600160a060020a038516935063b94ccd6c9260448084019360209390839003909101908290876161da5a03f11561000257505050505050565b6101e8600435600154600090600160a060020a0316811480159061019a5750600154600160a060020a03838116911614155b1561020557610226565b6101f2600054600160a060020a031681565b6101e660005433600160a060020a0390811691161461022b57610002565b6101f2600154600160a060020a031681565b005b6060908152602090f35b600160a060020a03166060908152602090f35b506001805473ffffffffffffffffffffffffffffffffffffffff1916821781555b919050565b600054600160a060020a0316ff",
+    address: "0xed262c78ba35b681e427a4fcfe98df104f0ce6c5",
+    generated_with: "2.0.6",
+    contract_name: "Math"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("Math error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Math error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Math error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Math error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.Math = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":false,"inputs":[{"name":"data","type":"bytes32"}],"name":"execute","outputs":[],"type":"function"}],
+    binary: "6060604052601e8060106000396000f3606060405260e060020a6000350463e751f2718114601a575b005b601856",
+    unlinked_binary: "6060604052601e8060106000396000f3606060405260e060020a6000350463e751f2718114601a575b005b601856",
+    address: "0x18c21d79c810e58a198d76b6c9cd27a99ad77b1b",
+    generated_with: "2.0.6",
+    contract_name: "MathAddAction"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("MathAddAction error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("MathAddAction error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("MathAddAction error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("MathAddAction error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.MathAddAction = Contract;
+  }
+
+})();
+;
+
+// Factory "morphs" into a Pudding class.
+// The reasoning is that calling load in each context
+// is cumbersome.
+
+(function() {
+
+  var contract_data = {
+    abi: [{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"type":"function"},{"constant":false,"inputs":[],"name":"remove","outputs":[],"type":"function"}],
+    binary: "606060405260008054600160a060020a031916331781556071908190602390396000f36060604052361560275760e060020a60003504638da5cb5b8114602d578063a7f4377914603e575b60006002565b6059600054600160a060020a031681565b600060005433600160a060020a039081169116146063576002565b6060908152602090f35b600054600160a060020a0316ff",
+    unlinked_binary: "606060405260008054600160a060020a031916331781556071908190602390396000f36060604052361560275760e060020a60003504638da5cb5b8114602d578063a7f4377914603e575b60006002565b6059600054600160a060020a031681565b600060005433600160a060020a039081169116146063576002565b6060908152602090f35b600054600160a060020a0316ff",
+    address: "0x4179cadb1d6879e03fe76f00ec925f4b814e28d3",
+    generated_with: "2.0.6",
+    contract_name: "Owned"
+  };
+
+  function Contract() {
+    if (Contract.Pudding == null) {
+      throw new Error("Owned error: Please call load() first before creating new instance of this contract.");
+    }
+
+    Contract.Pudding.apply(this, arguments);
+  };
+
+  Contract.load = function(Pudding) {
+    Contract.Pudding = Pudding;
+
+    Pudding.whisk(contract_data, Contract);
+
+    // Return itself for backwards compatibility.
+    return Contract;
+  }
+
+  Contract.new = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Owned error: Please call load() first before calling new().");
+    }
+
+    return Contract.Pudding.new.apply(Contract, arguments);
+  };
+
+  Contract.at = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Owned error: lease call load() first before calling at().");
+    }
+
+    return Contract.Pudding.at.apply(Contract, arguments);
+  };
+
+  Contract.deployed = function() {
+    if (Contract.Pudding == null) {
+      throw new Error("Owned error: Please call load() first before calling deployed().");
+    }
+
+    return Contract.Pudding.deployed.apply(Contract, arguments);
+  };
+
+  if (typeof module != "undefined" && typeof module.exports != "undefined") {
+    module.exports = Contract;
+  } else {
+    // There will only be one version of Pudding in the browser,
+    // and we can use that.
+    window.Owned = Contract;
+  }
+
+})();
+;
+
 
 
 
@@ -5736,39 +6272,65 @@ var accounts;
 var account;
 var balance;
 
-function setStatus(message) {
-  var status = document.getElementById("status");
-  status.innerHTML = message;
-};
+// function setStatus(message) {
+//   var status = document.getElementById("status");
+//   status.innerHTML = message;
+// };
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
+// function refreshBalance() {
+//   var meta = MetaCoin.deployed();
 
-  meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error getting balance; see log.");
+//   meta.getBalance.call(account, {from: account}).then(function(value) {
+//     var balance_element = document.getElementById("balance");
+//     balance_element.innerHTML = value.valueOf();
+//   }).catch(function(e) {
+//     console.log(e);
+//     setStatus("Error getting balance; see log.");
+//   });
+// };
+
+// function sendCoin() {
+//   var meta = MetaCoin.deployed();
+
+//   var amount = parseInt(document.getElementById("amount").value);
+//   var receiver = document.getElementById("receiver").value;
+
+//   setStatus("Initiating transaction... (please wait)");
+
+//   meta.sendCoin(receiver, amount, {from: account}).then(function() {
+//     setStatus("Transaction complete!");
+//     refreshBalance();
+//   }).catch(function(e) {
+//     console.log(e);
+//     setStatus("Error sending coin; see log.");
+//   });
+// };
+
+
+function  loadDeployedContractAddress(){
+
+    var contracts = [];
+    contracts.push( { name: 'Doug', address: Doug.deployed } );
+    console.log('Contracts ', contracts);
+    
+}
+
+function addModule(name, address) {
+
+  var DougContract  =  Doug.deployed();
+
+  DougContract.addModule(name, address, {from: account} ).then(function(result){
+      
+      console.log('result : ', result);
+
+  }).catch(function(e){
+      
+      console.log('Error', e);
+  
   });
-};
 
-function sendCoin() {
-  var meta = MetaCoin.deployed();
+} 
 
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
-
-  setStatus("Initiating transaction... (please wait)");
-
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
-    setStatus("Transaction complete!");
-    refreshBalance();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error sending coin; see log.");
-  });
-};
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
@@ -5785,7 +6347,9 @@ window.onload = function() {
     accounts = accs;
     account = accounts[0];
 
-    refreshBalance();
+    //--Get Doug Contract in 
+    DougContract  =  Doug.deployed();
+
   });
 }
 
@@ -5812,5 +6376,5 @@ if (typeof web3 !== 'undefined') {
 
 Pudding.setWeb3(window.web3);                                 
 
-Pudding.load([], window);               
+Pudding.load([Action, ActionsDB, ActionsManager, Doug, GroveAPI, Math, MathAddAction, Owned], window);               
 
