@@ -15,8 +15,6 @@ module.exports = {
     "ActionsDB",
     "ActionsManager",
     "Doug",
-    "DougDB",
-    "DougEnabled",
     "GroveAPI",
     "Math",
     "MathAddAction",
