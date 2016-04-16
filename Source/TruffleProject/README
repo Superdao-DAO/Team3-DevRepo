@@ -19,5 +19,6 @@ TODO
 1. A better systems for making “Calls” to contracts registered with Doug: Action.sol, ActionsManager.sol method execute, Math.sol method add.
 2. Use Grove DB lib in ActionsDB.sol and DougDB.sol. Data structures for actions and contracts. Also DS for list for DougDB._getAll().
 3. Implementation for Doug.switchDoug() (depends on 1.). 
-4. Just model the use of a permissions system without implementation.
-5. Updated solidity syntaxes where possible, ie possible usage of (new contract)() , self destruct, libraries etc..
+4. Review Doug.sol: contracts' relations, so they can be separated into three files. 
+5. Just model the use of a permissions system without implementation.
+6. Updated solidity syntaxes where possible, ie possible usage of (new contract)() , self destruct, libraries etc..
