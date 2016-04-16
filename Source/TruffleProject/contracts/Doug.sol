@@ -1,5 +1,7 @@
 import "Owned.sol";
 
+// @TODO Review these three contracts' relations, so they can be separated into three files. 
+
 // Contracts which extend DougEnabled have access to the Modules Manager (Doug)
 contract DougEnabled is Owned {
     address public DOUG;
