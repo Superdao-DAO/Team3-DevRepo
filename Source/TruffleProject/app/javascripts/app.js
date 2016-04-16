@@ -62,6 +62,22 @@ function addModule(name, address) {
 } 
 
 
+function testUsage() {
+
+  var testusage =  TestUsage.deployed();
+
+  testusage.testAdd( {from: account} ).then(function(result){
+      
+      console.log('result : ', result);
+
+  }).catch(function(e){
+      
+      console.log('Error', e);
+  
+  });
+}
+
+
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
     if (err != null) {

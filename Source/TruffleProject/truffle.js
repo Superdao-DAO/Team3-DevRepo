@@ -17,7 +17,8 @@ module.exports = {
     "GroveAPI",
     "Math",
     "MathAddAction",
-    "Owned"
+    "Owned",
+    "TestUsage"
   ],
   rpc: {
     host: "localhost",
