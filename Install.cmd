@@ -1,8 +1,12 @@
 @set PATH=%WINDIR%\System32;%~dp0Import\Node;%~dp0Import\Git\bin;%~dp0Import\Git\usr\bin;%~dp0Import\Code;%~dp0Import\Python;%~dp0Import\OpenSSL
 @echo Installing Ethereum test development environment
 
+@echo Installing Git
+@set source=https://github.com/git-for-windows/git/releases/download/v2.8.1.windows.1
+@set target=PortableGit-2.8.1-64-bit.7z.exe
+@if not exist Import\Downloads\%target% call %WINDIR%\System32\WindowsPowerShell\v1.0\powershell -Command "(New-Object System.Net.WebClient).DownloadFile(\"%source%/%target%\", \"Import\Downloads\%target%\")"
 @if not exist Import\Git (
-	@call Import\Downloads\PortableGit-2.8.1-64-bit.7z.exe -y -gm1
+	@call Import\Downloads\%target% -y -gm1
 	@move Import\Downloads\PortableGit Import\Git
 )
 
