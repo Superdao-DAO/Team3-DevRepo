@@ -63,6 +63,7 @@ contract DougDB is DougEnabled {
 
     }
     
+    // @dev return 0x0, if nothing is found.
     function _get(bytes32 name)
         constant
         public
@@ -158,6 +159,11 @@ contract Doug is Owned {
         DougDB db = DougDB(dougDBAddress);
     
         result = db._add(name, addr);
+        
+        if (result) {
+            Events e = Events(getModule("core.events"));
+            e._moduleAdded(name, addr, msg.sender);
+        }        
     }
 
     // Remove a contract from Doug. We could also suicide if we want to (with an input flag)
@@ -167,6 +173,11 @@ contract Doug is Owned {
         DougDB db = DougDB(dougDBAddress);
     
         result = db._remove(name);
+        
+        if (result) {
+            Events e = Events(getModule("core.events"));
+            e._moduleRemoved(name, msg.sender);
+        }        
     }
     
     function getModule(bytes32 name)
@@ -180,6 +191,11 @@ contract Doug is Owned {
         DougDB db = DougDB(dougDBAddress);
     
         contractAddr = db._get(name);
+        
+        if (contractAddr != 0x0) {
+            Events e = Events(getModule("core.events"));
+            e._moduleAccessed(name, newDoug, msg.sender);
+        }
     }
     
     // @dev Also selfdestructs current Doug.
@@ -189,6 +205,9 @@ contract Doug is Owned {
         DougDB db = DougDB(dougDBAddress);
         
         // @TODO Use db._getAll() and call setDougAddress(newDoug) for every contract.
+        
+        Events e = Events(getModule("core.events"));
+        e._dougSwitched(this, newDoug);
         
         remove();
     }
