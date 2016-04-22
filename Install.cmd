@@ -39,8 +39,8 @@
 
 @echo Installing Visual Studio Code
 @set source=https://go.microsoft.com/fwlink/?LinkID=623231
-@set target=vscode-0.10.11.zip
-@if not exist Import\Downloads\vscode-0.10.11.zip call curl -#L "%source%" -o Import\Downloads\%target%
+@set target=vscode-1.0.0.zip
+@if not exist Import\Downloads\%target% call curl -#L "%source%" -o Import\Downloads\%target%
 @if not exist Import\Code (
 	@md Import\Code
 	@call unzip -n Import\Downloads\%target% -d Import\Code
